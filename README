@@ -1,0 +1,4 @@
+Backup Browser
+==============
+
+An Amazon S3 XML browser/parser using jQuery mobile.  A test to see if there's a neat way to visualize the XML list of backups provided by Amazon's S3 service.
