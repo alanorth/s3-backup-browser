@@ -1,6 +1,9 @@
 <html>
 <head>
 	<title>s3xml + jQuery mobile</title>
+	<link rel="stylesheet" href="jquery.mobile-1.0a2.min.css" />
+	<script src="jquery-1.4.4.min.js"></script>
+	<script src="jquery.mobile-1.0a2.min.js"></script>
 </head>
 <body>
 <?php
