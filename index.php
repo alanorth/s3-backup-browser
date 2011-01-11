@@ -53,14 +53,57 @@
 		}
     }   
     
-	echo "<pre>";
-	print_r($daily);
-	echo "</pre>";
-	echo "<pre><h2>weekly</h2>";
-	print_r($weekly);
-	echo "</pre>";
+?>
+<div data-role="page">
+	<div data-role="header">
+		<h1>Amazon S3 Backups</h1>
+	</div><!-- /header -->
+		<ul data-role="listview">
+			<li>Daily
+				<ul>
+					<li>avid_portal
+						<ul>
+							<li>avid_portal_2010-12-13_03h15m.Monday.sql.gz</li>
+							<li>avid_portal_2010-12-14_03h15m.Tuesday.sql.gz</li>
+							<li>avid_portal_2010-12-15_03h15m.Wednesday.sql.gz</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>Weekly
+				<ul>
+					<li>avid_portal
+						<ul>
+							<li>avid_portal_week.01.2011-01-08_03h15m.sql.gz</li>
+							<li>avid_portal_week.32.2010-08-14_13h59m.sql.gz</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>Monthly
+				<ul>
+					<li>avid_portal
+						<ul>
+							<li>monthly1</li>
+							<li>monthly2</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+		</ul>
+</div>
 
-    echo count($xmlObj->Contents);
+</body>
+
+<?
+//	echo "<pre>";
+//	print_r($daily);
+//	echo "</pre>";
+//	echo "<pre><h2>weekly</h2>";
+//	print_r($weekly);
+//	echo "</pre>";
+
+    //echo count($xmlObj->Contents);
 ?>
 </body>
 </html>
