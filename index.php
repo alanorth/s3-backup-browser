@@ -27,19 +27,20 @@
 															// only one or two elements from an array?
 															// like in perl's array("1","2")[0]?
 			$size = (string) $content->Size; # cast Size to a string, otherwise it's still a SimpleXML object
+			$filename = (string) $content->Key;
 #			$lastmodified = $content->LastModified;
 			if(!array_key_exists("$dbname",$daily)) {
-				#array_push($daily,"$dbname"=>array());
 				$daily["$dbname"] = array();
 			}
-			array_push($daily["$dbname"],array('size'=>$size));
+			array_push($daily["$dbname"],array('size'=>$size,'filename'=>$filename));
 		}
 		else if(preg_match('/^mysql\/weekly/i',$content->Key)) {
 			list(,,$dbname,) = explode('/',$content->Key);
+			$filename = (string) $content->Key;
 			if(!array_key_exists("$dbname",$weekly)) {
 				$weekly["$dbname"] = array();
 			}
-			array_push($weekly["$dbname"],array('size'=>$size));
+			array_push($weekly["$dbname"],array('size'=>$size,'filename'=>$filename));
 		}
 		else if(preg_match('/^mysql\/monthly/i',$content->Key)) {
 			list(,,$dbname,) = explode('/',$content->Key);
@@ -58,23 +59,35 @@
 		<ul data-role="listview">
 			<li>Daily
 				<ul>
-					<li>avid_portal
-						<ul>
-							<li>avid_portal_2010-12-13_03h15m.Monday.sql.gz</li>
-							<li>avid_portal_2010-12-14_03h15m.Tuesday.sql.gz</li>
-							<li>avid_portal_2010-12-15_03h15m.Wednesday.sql.gz</li>
-						</ul>
-					</li>
+<?
+	# cycle through the backups and create the structure of our nested list for jQuery Mobile
+	while($daily_backup = current($daily)) {
+		echo "				<li>".key($daily)."\n";
+		echo "					<ul>\n";
+		foreach($daily_backup as $backup) {
+			echo "						<li>".$backup['filename']."</li>\n";
+		}
+		echo "				</ul>\n";
+		echo "			</li>\n";
+		next($daily);
+	}
+?>
 				</ul>
 			</li>
 			<li>Weekly
 				<ul>
-					<li>avid_portal
-						<ul>
-							<li>avid_portal_week.01.2011-01-08_03h15m.sql.gz</li>
-							<li>avid_portal_week.32.2010-08-14_13h59m.sql.gz</li>
-						</ul>
-					</li>
+<?
+	while($weekly_backup = current($weekly)) {
+		echo "				<li>".key($weekly)."\n";
+		echo "					<ul>\n";
+		foreach($weekly_backup as $backup) {
+			echo "						<li>".$backup['filename']."</li>\n";
+		}
+		echo "				</ul>\n";
+		echo "			</li>\n";
+		next($weekly);
+	}
+?>
 				</ul>
 			</li>
 			<li>Monthly
