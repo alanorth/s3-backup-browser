@@ -19,9 +19,6 @@
 	$monthly = array();
 
     foreach ( $xmlObj->Contents as $content ) { 
-#        echo 'Name: ' . $content->Key . "<br />\n";
-#        echo 'Size: ' . $content->Size . "<br />\n";
-#        echo "<br />\n";
 		# check if the current file ("Key" in Amazon's S3 XML) is daily, weekly, etc
 		# example: //mysql/monthly/azizi/azizi_2010-09-01_03h15m.September.azizi.sql.gz
 		if(preg_match('/^mysql\/daily/i',$content->Key)) {
@@ -95,15 +92,4 @@
 
 </body>
 
-<?
-//	echo "<pre>";
-//	print_r($daily);
-//	echo "</pre>";
-//	echo "<pre><h2>weekly</h2>";
-//	print_r($weekly);
-//	echo "</pre>";
-
-    //echo count($xmlObj->Contents);
-?>
-</body>
 </html>
